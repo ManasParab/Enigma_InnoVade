@@ -1,0 +1,83 @@
+{
+  "condition": "Hypertension",
+  "description": "High blood pressure management patterns and health outcomes",
+  "patterns": {
+    "Stable": {
+      "vitals": {
+        "systolic": { "range": [110, 130], "average": 120 },
+        "diastolic": { "range": [70, 85], "average": 78 },
+        "heartRate": { "range": [60, 90], "average": 72 },
+        "weight": { "fluctuation": "minimal", "trend": "stable" }
+      },
+      "lifestyle": {
+        "mood": ["good", "great", "okay"],
+        "stressLevel": "low to moderate",
+        "exerciseFrequency": "regular",
+        "sodiumIntake": "controlled"
+      },
+      "outcomes": {
+        "riskLevel": "Low",
+        "complications": "Rare",
+        "stabilityScore": [75, 95],
+        "prognosis": "Excellent with continued management"
+      }
+    },
+    "At-Risk": {
+      "vitals": {
+        "systolic": { "range": [130, 150], "average": 140 },
+        "diastolic": { "range": [85, 95], "average": 88 },
+        "heartRate": { "range": [75, 100], "average": 85 },
+        "weight": { "fluctuation": "moderate", "trend": "increasing" }
+      },
+      "lifestyle": {
+        "mood": ["okay", "stressed", "tired"],
+        "stressLevel": "moderate to high",
+        "exerciseFrequency": "inconsistent",
+        "sodiumIntake": "elevated"
+      },
+      "outcomes": {
+        "riskLevel": "Moderate",
+        "complications": "Possible within 6-12 months",
+        "stabilityScore": [50, 74],
+        "prognosis": "Good with immediate lifestyle changes"
+      }
+    },
+    "Critical": {
+      "vitals": {
+        "systolic": { "range": [150, 180], "average": 165 },
+        "diastolic": { "range": [95, 110], "average": 102 },
+        "heartRate": { "range": [90, 120], "average": 105 },
+        "weight": { "fluctuation": "significant", "trend": "rapid changes" }
+      },
+      "lifestyle": {
+        "mood": ["stressed", "unwell", "tired"],
+        "stressLevel": "high",
+        "exerciseFrequency": "minimal or none",
+        "sodiumIntake": "excessive"
+      },
+      "outcomes": {
+        "riskLevel": "High",
+        "complications": "Likely within 30-90 days",
+        "stabilityScore": [10, 49],
+        "prognosis": "Requires immediate medical intervention"
+      }
+    }
+  },
+  "interventions": {
+    "Stable": {
+      "dietary": ["Maintain DASH diet", "Continue low sodium intake", "Regular hydration"],
+      "exercise": ["Continue current activity level", "Add variety to workouts"],
+      "monitoring": ["Weekly BP checks", "Monthly weight tracking"]
+    },
+    "At-Risk": {
+      "dietary": ["Reduce sodium to <2300mg/day", "Increase potassium-rich foods", "Limit processed foods"],
+      "exercise": ["Start 30min walks 5x/week", "Stress reduction activities", "Weight management"],
+      "monitoring": ["Daily BP monitoring", "Weekly weight checks", "Stress level tracking"]
+    },
+    "Critical": {
+      "dietary": ["Strict low-sodium diet <1500mg/day", "Eliminate processed foods", "Professional nutrition consultation"],
+      "exercise": ["Gentle activities only", "Meditation and breathing exercises", "Supervised exercise program"],
+      "monitoring": ["Multiple daily BP checks", "Daily weight monitoring", "Immediate medical follow-up"]
+    }
+  }
+}

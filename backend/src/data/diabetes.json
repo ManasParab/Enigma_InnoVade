@@ -1,0 +1,91 @@
+{
+  "condition": "Type 2 Diabetes",
+  "description": "Blood glucose management patterns and diabetic health outcomes",
+  "patterns": {
+    "Stable": {
+      "vitals": {
+        "fastingGlucose": { "range": [80, 120], "average": 95 },
+        "postMealGlucose": { "range": [120, 160], "average": 140 },
+        "HbA1c": { "range": [5.5, 7.0], "average": 6.2 },
+        "bloodPressure": { "systolic": [110, 130], "diastolic": [70, 85] },
+        "weight": { "fluctuation": "minimal", "bmi": "controlled" }
+      },
+      "lifestyle": {
+        "mood": ["good", "great", "okay"],
+        "dietCompliance": "high",
+        "exerciseFrequency": "regular",
+        "medicationAdherence": "consistent"
+      },
+      "outcomes": {
+        "riskLevel": "Low",
+        "complications": "Minimal long-term risk",
+        "stabilityScore": [75, 95],
+        "prognosis": "Excellent diabetes management"
+      }
+    },
+    "At-Risk": {
+      "vitals": {
+        "fastingGlucose": { "range": [120, 180], "average": 150 },
+        "postMealGlucose": { "range": [180, 250], "average": 220 },
+        "HbA1c": { "range": [7.0, 9.0], "average": 8.0 },
+        "bloodPressure": { "systolic": [130, 150], "diastolic": [85, 95] },
+        "weight": { "fluctuation": "moderate", "bmi": "increasing" }
+      },
+      "lifestyle": {
+        "mood": ["okay", "stressed", "tired"],
+        "dietCompliance": "inconsistent",
+        "exerciseFrequency": "irregular",
+        "medicationAdherence": "sometimes missed"
+      },
+      "outcomes": {
+        "riskLevel": "Moderate",
+        "complications": "Possible within 1-2 years",
+        "stabilityScore": [50, 74],
+        "prognosis": "Requires immediate lifestyle adjustment"
+      }
+    },
+    "Critical": {
+      "vitals": {
+        "fastingGlucose": { "range": [180, 300], "average": 240 },
+        "postMealGlucose": { "range": [250, 400], "average": 320 },
+        "HbA1c": { "range": [9.0, 12.0], "average": 10.5 },
+        "bloodPressure": { "systolic": [150, 180], "diastolic": [95, 110] },
+        "weight": { "fluctuation": "significant", "bmi": "uncontrolled" }
+      },
+      "lifestyle": {
+        "mood": ["stressed", "unwell", "tired"],
+        "dietCompliance": "poor",
+        "exerciseFrequency": "minimal",
+        "medicationAdherence": "frequently missed"
+      },
+      "outcomes": {
+        "riskLevel": "High",
+        "complications": "Likely within 3-6 months",
+        "stabilityScore": [10, 49],
+        "prognosis": "Immediate medical intervention required"
+      }
+    }
+  },
+  "complications": {
+    "earlyWarning": ["Frequent urination", "Excessive thirst", "Blurred vision", "Fatigue", "Slow healing wounds"],
+    "longTerm": ["Neuropathy", "Retinopathy", "Nephropathy", "Cardiovascular disease", "Foot problems"],
+    "emergency": ["Diabetic ketoacidosis", "Hyperosmolar hyperglycemic state", "Severe hypoglycemia"]
+  },
+  "interventions": {
+    "Stable": {
+      "dietary": ["Continue carb counting", "Maintain portion control", "Regular meal timing"],
+      "exercise": ["Continue current routine", "Add strength training", "Monitor glucose response"],
+      "monitoring": ["Weekly glucose logs", "Quarterly HbA1c", "Annual eye/foot exams"]
+    },
+    "At-Risk": {
+      "dietary": ["Strict carb limitation", "Increase fiber intake", "Eliminate sugary drinks"],
+      "exercise": ["Daily 30min activity", "Post-meal walks", "Weight management focus"],
+      "monitoring": ["Daily glucose testing", "Bi-monthly HbA1c", "Blood pressure checks"]
+    },
+    "Critical": {
+      "dietary": ["Professional nutrition counseling", "Very low-carb diet", "Frequent small meals"],
+      "exercise": ["Supervised light activity", "Avoid high-intensity", "Gradual progression"],
+      "monitoring": ["Multiple daily glucose checks", "Weekly medical visits", "Continuous glucose monitoring"]
+    }
+  }
+}

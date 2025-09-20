@@ -1,0 +1,110 @@
+{
+  "condition": "Cardiac Risk",
+  "description": "Cardiovascular health patterns and heart disease risk assessment",
+  "patterns": {
+    "Stable": {
+      "vitals": {
+        "bloodPressure": { "systolic": [110, 125], "diastolic": [70, 80] },
+        "restingHeartRate": { "range": [60, 85], "average": 70 },
+        "cholesterol": {
+          "total": { "range": [150, 200], "average": 175 },
+          "ldl": { "range": [70, 100], "average": 85 },
+          "hdl": { "range": [45, 80], "average": 60 }
+        },
+        "weight": { "bmi": [20, 25], "waistCircumference": "normal" }
+      },
+      "lifestyle": {
+        "mood": ["good", "great", "okay"],
+        "exerciseTolerance": "excellent",
+        "smokingStatus": "never or quit >2 years",
+        "alcoholIntake": "moderate or none",
+        "stressLevel": "low to moderate"
+      },
+      "outcomes": {
+        "riskLevel": "Low",
+        "10YearRisk": "<10%",
+        "stabilityScore": [80, 95],
+        "prognosis": "Excellent cardiovascular health"
+      }
+    },
+    "At-Risk": {
+      "vitals": {
+        "bloodPressure": { "systolic": [125, 140], "diastolic": [80, 90] },
+        "restingHeartRate": { "range": [85, 100], "average": 90 },
+        "cholesterol": {
+          "total": { "range": [200, 250], "average": 225 },
+          "ldl": { "range": [100, 140], "average": 120 },
+          "hdl": { "range": [35, 45], "average": 40 }
+        },
+        "weight": { "bmi": [25, 30], "waistCircumference": "elevated" }
+      },
+      "lifestyle": {
+        "mood": ["okay", "stressed", "tired"],
+        "exerciseTolerance": "fair to good",
+        "smokingStatus": "recent quit or light smoking",
+        "alcoholIntake": "moderate to heavy",
+        "stressLevel": "moderate to high"
+      },
+      "outcomes": {
+        "riskLevel": "Moderate",
+        "10YearRisk": "10-20%",
+        "stabilityScore": [50, 79],
+        "prognosis": "Preventable with lifestyle changes"
+      }
+    },
+    "Critical": {
+      "vitals": {
+        "bloodPressure": { "systolic": [140, 180], "diastolic": [90, 110] },
+        "restingHeartRate": { "range": [100, 120], "average": 110 },
+        "cholesterol": {
+          "total": { "range": [250, 350], "average": 300 },
+          "ldl": { "range": [140, 200], "average": 170 },
+          "hdl": { "range": [25, 35], "average": 30 }
+        },
+        "weight": { "bmi": [30, 40], "waistCircumference": "high risk" }
+      },
+      "lifestyle": {
+        "mood": ["stressed", "unwell", "tired"],
+        "exerciseTolerance": "poor",
+        "smokingStatus": "current smoker",
+        "alcoholIntake": "heavy or frequent binge",
+        "stressLevel": "high chronic stress"
+      },
+      "outcomes": {
+        "riskLevel": "High",
+        "10YearRisk": ">20%",
+        "stabilityScore": [10, 49],
+        "prognosis": "Immediate intervention needed"
+      }
+    }
+  },
+  "riskFactors": {
+    "modifiable": [
+      "High blood pressure", "High cholesterol", "Smoking", "Physical inactivity", 
+      "Overweight/obesity", "Diabetes", "Unhealthy diet", "Excessive alcohol"
+    ],
+    "nonModifiable": [
+      "Age", "Gender", "Family history", "Ethnicity", "Previous heart disease"
+    ],
+    "emerging": [
+      "Sleep apnea", "Chronic stress", "Depression", "Inflammatory markers"
+    ]
+  },
+  "interventions": {
+    "Stable": {
+      "lifestyle": ["Maintain current exercise", "Heart-healthy diet", "Stress management"],
+      "monitoring": ["Annual lipid panel", "Blood pressure checks", "Weight maintenance"],
+      "prevention": ["Regular cardio check-ups", "Vaccine compliance", "Dental health"]
+    },
+    "At-Risk": {
+      "lifestyle": ["Increase cardio exercise", "Mediterranean diet", "Smoking cessation program"],
+      "monitoring": ["Quarterly lipid checks", "Weekly BP monitoring", "Weight loss tracking"],
+      "medical": ["Consider statin therapy", "ACE inhibitor evaluation", "Aspirin therapy"]
+    },
+    "Critical": {
+      "lifestyle": ["Supervised cardiac rehab", "Strict dietary intervention", "Immediate smoking cessation"],
+      "monitoring": ["Monthly medical visits", "Daily BP/weight checks", "Stress testing"],
+      "medical": ["Aggressive statin therapy", "Multiple BP medications", "Possible procedures"]
+    }
+  }
+}
