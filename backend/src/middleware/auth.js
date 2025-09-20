@@ -1,4 +1,4 @@
-const firebaseService = require('../services/firebaseService');
+const firebaseConfig = require('../config/firebase');
 const logger = require('../utils/logger');
 
 // Middleware to verify Firebase ID token
@@ -9,7 +9,8 @@ const verifyToken = async (req, res, next) => {
     if (!authHeader) {
       return res.status(401).json({
         success: false,
-        message: 'Authorization header is required'
+        message: 'Authorization header is required',
+        code: 'MISSING_AUTH_HEADER'
       });
     }
     
@@ -19,22 +20,31 @@ const verifyToken = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({
         success: false,
-        message: 'Token is required'
+        message: 'Token is required',
+        code: 'MISSING_TOKEN'
       });
     }
     
     // Verify the token with Firebase
-    const decodedToken = await firebaseService.verifyIdToken(token);
-    
-    // Get user data from Firestore
-    const user = await firebaseService.getUserById(decodedToken.uid);
+    const decodedToken = await firebaseConfig.verifyIdToken(token);
     
     // Attach user information to request
-    req.user = user;
+    req.user = {
+      uid: decodedToken.uid,
+      email: decodedToken.email,
+      emailVerified: decodedToken.email_verified,
+      name: decodedToken.name,
+      picture: decodedToken.picture,
+      iat: decodedToken.iat,
+      exp: decodedToken.exp
+    };
+    
     req.userId = decodedToken.uid;
     req.decodedToken = decodedToken;
     
+    logger.info(`Token verified for user: ${decodedToken.uid}`);
     next();
+    
   } catch (error) {
     logger.error('Token verification failed:', error);
     
@@ -63,11 +73,11 @@ const verifyToken = async (req, res, next) => {
       });
     }
     
-    if (error.message === 'User not found') {
-      return res.status(404).json({
+    if (error.code === 'auth/argument-error') {
+      return res.status(401).json({
         success: false,
-        message: 'User account not found.',
-        code: 'USER_NOT_FOUND'
+        message: 'Invalid token provided.',
+        code: 'TOKEN_MALFORMED'
       });
     }
     

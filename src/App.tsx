@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthStore } from "./store/auth-store";
 import { Login } from "./components/auth/login";
 import { Register } from "./components/auth/register";
@@ -63,8 +63,25 @@ function Dashboard() {
 }
 
 export default function App() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, isInitializing, initializeAuth } = useAuthStore();
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+
+  useEffect(() => {
+    // Initialize Firebase auth listener
+    initializeAuth();
+  }, [initializeAuth]);
+
+  // Show loading screen while initializing
+  if (isInitializing) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/20 via-background to-positive/20">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-600">Initializing VitalCircle...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (isAuthenticated) {
     return (

@@ -5,18 +5,20 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 
-// Import services
-const firebaseService = require('./src/services/firebaseService');
-const aiService = require('./src/services/aiService');
+// Import configurations
+const firebaseConfig = require('./src/config/firebase');
+const geminiConfig = require('./src/config/gemini');
 const logger = require('./src/utils/logger');
 
 // Import routes
 const authRoutes = require('./src/routes/auth');
-const vitalsRoutes = require('./src/routes/vitals');
-const dashboardRoutes = require('./src/routes/dashboard');
+const geminiRoutes = require('./src/routes/gemini');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Server instance for graceful shutdown
+let server;
 
 // Rate limiting
 const limiter = rateLimit({
@@ -85,8 +87,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/vitals', vitalsRoutes);
-app.use('/api/dashboard', dashboardRoutes);
+app.use('/api', geminiRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -98,8 +99,9 @@ app.get('/', (req, res) => {
     endpoints: {
       health: '/health',
       auth: '/api/auth',
-      vitals: '/api/vitals',
-      dashboard: '/api/dashboard'
+      gemini: '/api/gemini-prompt',
+      healthAnalysis: '/api/health-analysis',
+      aiStatus: '/api/ai-status'
     }
   });
 });
@@ -188,24 +190,22 @@ async function startServer() {
   try {
     logger.info('Initializing VitalCircle Backend...');
     
-    // Initialize Firebase service
-    logger.info('Initializing Firebase service...');
-    firebaseService.initialize();
+    // Initialize Firebase configuration
+    logger.info('Initializing Firebase Admin SDK...');
+    firebaseConfig.initialize();
     
-    // Initialize AI service
-    logger.info('Initializing AI service...');
-    await aiService.initialize();
+    // Initialize Gemini AI
+    logger.info('Initializing Gemini AI...');
+    geminiConfig.initialize();
     
     // Start HTTP server
-    const server = app.listen(PORT, () => {
+    server = app.listen(PORT, () => {
       logger.info(`VitalCircle Backend started successfully`);
       logger.info(`Server running on port ${PORT}`);
       logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
       logger.info(`Health check: http://localhost:${PORT}/health`);
     });
     
-    // Make server available for graceful shutdown
-    global.server = server;
     
   } catch (error) {
     logger.error('Failed to start server:', error);
