@@ -25,6 +25,4 @@ Build a **web-based predictive ecosystem** that co-manages chronic conditions, l
 ## 🚀 Core Features
 - **Predictive Risk Engine** – AI-driven "Stability Score" forecasting potential health risks.  
 - **Context-Aware Nudges** – Personalized prompts to support lifestyle balance.  
-- **Clinician Portal** – Secure view for doctors with AI-suggested interventions.  
-- **Community & Peer Support** – Simple forums for patients to share strategies.  
 - **Progress Dashboard** – Visual trendlines for vitals, habits, and adherence.  
